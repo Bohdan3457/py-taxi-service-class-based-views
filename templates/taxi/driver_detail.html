@@ -3,9 +3,10 @@
 {% block content %}
   <h1>Username: {{ driver.username }}</h1>
 
+  <h2>Cars</h2>
   <ul>
     {% for car in driver.cars.all %}
-      <li>{{ car.model }}</li>
+      <li>{{ car.model }} — {{ car.manufacturer.name }} ({{ car.manufacturer.country }})</li>
     {% empty %}
       <li>No Cars found.</li>
     {% endfor %}

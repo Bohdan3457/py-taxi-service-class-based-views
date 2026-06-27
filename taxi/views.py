@@ -37,8 +37,8 @@ class CarDetailView(DetailView):
 
 class DriverListView(ListView):
     model = Driver
-    queryset = Driver.objects.order_by("username")
     paginate_by = 5
+    context_object_name = "driver_list"
 
 
 class DriverDetailView(DetailView):

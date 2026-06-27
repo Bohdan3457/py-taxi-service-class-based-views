@@ -3,14 +3,28 @@
 {% block content %}
   <h1>Car List</h1>
 
-  <ul>
-    {% for car in car_list %}
-      <li>
-        <a href="{% url 'taxi:car-detail' pk=car.id %}">{{ car.model }}</a>
-      </li>
-    {% empty %}
-      <li>No Cars found.</li>
-    {% endfor %}
-  </ul>
-  {% include "includes/pagination.html" %}
+  {% if car_list %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Model</th>
+          <th>Manufacturer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in car_list %}
+          <tr>
+            <td>
+              <a href="{% url 'taxi:car-detail' pk=car.id %}">{{ car.id }}</a>
+            </td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.manufacturer.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No Cars found.</p>
+  {% endif %}
 {% endblock %}
